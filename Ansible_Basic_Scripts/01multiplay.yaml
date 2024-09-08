@@ -1,6 +1,6 @@
 - name: PLAY-01
   hosts: local 
-  task:
+  tasks:
   - name: Task 01 
     andible.builtin.debug:
     msg: "Task 01 - play -01"
