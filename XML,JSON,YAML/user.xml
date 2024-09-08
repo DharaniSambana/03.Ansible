@@ -1,0 +1,30 @@
+<Students>
+	<Student>
+		<Name>dharani</Name>
+		<Email>dsbdhb@gmail.com</Email>
+		<Addresses>
+			<PermAddress>
+				<AddressLine1>mig-244babametta</AddressLine1>
+				<AddressLine2>vixziahbd</AddressLine2>
+			</PermAddress>
+			<CurAddress>
+				<AddressLine1>mig-244babametta</AddressLine1>
+				<AddressLine2>vixziahbd</AddressLine2>
+			</CurAddress>
+		</Addresses>
+	</Student>
+	<Student>
+		<Name>shilpa</Name>
+		<Email>dsbdhb@gmail.com</Email>
+		<Addresses>
+			<PermAddress>
+				<AddressLine1>mig-244babametta</AddressLine1>
+				<AddressLine2>vixziahbd</AddressLine2>
+			</PermAddress>
+			<CurAddress>
+				<AddressLine1>mig-244babametta</AddressLine1>
+				<AddressLine2>vixziahbd</AddressLine2>
+			</CurAddress>
+		</Addresses>
+	</Student>
+</Students>

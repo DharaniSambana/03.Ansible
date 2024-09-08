@@ -1,0 +1,16 @@
+{
+	"name": "dharani",
+	"email": "emailkmnjnbus",
+	"addresses": [
+		{
+			"type": "per",
+			"line1": "mig244",
+			"line2": "vzm"
+		},
+		{
+			"type": "cur",
+			"line1": "mig244",
+			"line2": "vzm"
+		}
+	]
+}
