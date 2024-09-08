@@ -187,6 +187,7 @@ play book -ping.yaml or .yml
 
 ansible playbook - list of plays which contains modules that can do specific task
 
+ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 00.ping.yaml
 
 
 variables
