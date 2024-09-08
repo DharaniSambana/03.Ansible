@@ -1,0 +1,19 @@
+- name: PLAY-01
+  hosts: local 
+  task:
+  - name: Task 01 
+    andible.builtin.debug:
+    msg: "Task 01 - play -01"
+  - name: Task 02 
+    andible.builtin.debug:
+    msg: "Task 02- play -01"
+
+- name: PLAY-02
+  hosts: local
+  tasks:
+  - name: Task 01 
+    andible.builtin.debug:
+    msg: "Task 01 - play -02"
+  - name: Task 02 
+    andible.builtin.debug:
+    msg: "Task 02- play -02"

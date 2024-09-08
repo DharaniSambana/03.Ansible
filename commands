@@ -1,0 +1,15 @@
+remopte login 
+ssh ec2-user@ipaddress -C "echo 'hello' > /tmp/hello.txt"       //telling system to run commenad using '-C' //remote login 
+------------------------
+to install 
+sudo dnf install ansible -y
+----------------------------------
+adhoc command
+ansible -i 54.210.31.193, all -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ping
+SUCCESS - PONG 
+------------------------------------
+to run a play book with inventory file
+ansible-playbook -i inventory.ini -e ansible_user=ec2-user -e ansible_password=DevOps321 00.ping.yaml
+
+
+ansible.builtin.ping:              //- to ping the server
