@@ -1,0 +1,29 @@
+shell
+----------
+only in linux 
+if few server then shell is good
+windows server - shell will not work
+error handling is difficult 
+homogenous- only one districution of this will work redhat shell script will not work for ubuntu
+
+python 
+--------
+need to learn 
+platform independent
+works for both windows , linux 
+we need to maintain python - upgrades etc
+we need to login to every vm and install python
+
+Ansible
+----------
+just YAML 
+easy to learn
+it can execute parallely and sequenctially 
+no  manual intervention 
+- need to install only in node- control node
+
+
+
+-------------------------------------------------
+when you have API CALL we can use PYTHON
+PYTHON WORKS BEST WITH API CALLS

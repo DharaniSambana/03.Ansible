@@ -1,0 +1,285 @@
+Ansible Introduction
+--------------------
+legacy 
+-------------------------
+old technology 
+As part of our team , we are managing our legacy system as well
+1.Monitoring cpu and memory and sending alerts emails
+2.Backup scripts and scheduled them 
+
+Configuration management
+------------------------
+server -- plain server without anything installed -- aws 
+intsalling app runtime
+creating users and folder
+downloading code
+installing dependencies
+creating systemctl services
+copying config files
+
+plain --> ready to server the appilication /end user
+
+process -> manual -> shell script
+
+1.not idempotent --> write custome code to make it idempotent
+An operation is considered idempotent if it can be applied multiple times without changing the result beyond the initial application. 
+2.error handling --> we need to write code to check the errors
+3.homogenous --> if script written in redhat will it be useful to ubuntu 
+			 --> only works for specific distribution
+4.not scalable when too many servers
+5.syntax is not easy to understand
+6.it cannot run in windows
+
+Tools
+------------
+puppet,chef,rundeck,ansible etc.
+most famous - ansible 
+
+Configure management architechture
+--------------
+PUSH VS PULL
+--------------
+courier delhi-->hyd
+hyd dtdc 
+1. we got to hyd dtdc daily and check for courier ---> PULL
+2. we sit in home and whenever courier comes to hyd dtdc, they deliver to us -->PUSH
+
+ansible - PUSH BASED ARCHITECTURE - both
+all tools - PULL BASED ARCHITECTURE - not SSH -puppet,chef,salt
+
+PULL DISADVANTAGES:
+--------------------
+1.causing more traffic on roads -- more traffice in internet 
+2.resources waste -- bandwidth, power, device resources
+3.cost increase
+nodes will connects to server and checks for updates and get th updates 
+agents
+puppet
+MASTER- SLAVE 
+- AGENTS - needs to be configuraed - install puppet software so that we can connect to master
+
+PUSH ADVANTAGES:
+------------------
+save everything
+
+-agentless
+control(master)node , managed nodes
+install software only in one control node
+
+
+ANSIBLE 
+-------------
+Ansible offers open-source automation that is simple, flexible, and powerful.
+ANSIBLE WRITTEN IN PYTHON 
+PYTHON IS NEEDED
+
+
+NOT ONLY CONFIGURATION MANAGEMENT TOOL 
+1-PROVISIONING 
+2-CONFIGURATION
+3-DEPLOYMENT
+4-NETWORK AUTOMATION 
+
+ARCHITECTURE
+-------------
+1- MASTER SERVER 
+ALL OTHERS ARE NODES - 
+
+always use SSH protocol to connect to nodes
+ANSIBLE in MASTER SERVER connectes with NODE and pushes the configuration
+
+
+create a file in /tmp/hello.txt -- remote login
+----------------------------------
+ssh ec2-user@ipaddress -C "echo 'hello' > /tmp/hello.txt"  //telling system to run commenad using '-C' //remote login 
+
+
+Earlier ansible was only on push based, but recently it implement pull based also 
+
+
+INTSALLATION
+-----------------
+sudo dnf install ansible -y
+
+------------------------
+INVENTORY 
+-----------------------
+List of servers/nodes ansible is handling 
+
+check the connection to nodes
+ssh ec2-user@ipaddress 
+1. are your ansible server able to reach nodes-- firewall,config
+
+connect using ansible
+ansible -i ipaddress(pubIPnode), all -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ping
+SUCCESS - PONG 
+
+linux/shell -- commands == module in ansible
+
+
+TASK 
+-----
+Install nigix on node server using the ansible server
+
+ansible -i ipaddress(pubIPnode), all -e ansible_user=ec2-user -e ansible_password=DevOps321 -b -m dnf -a "name=nginx state=intsalled"
+
+-b --become root 
+-m -- module
+-a --arguments
+
+
+red - error
+yellow - changed
+green - no change and no error
+
+ansible -i ipaddress(pubIPnode), all -e ansible_user=ec2-user -e ansible_password=DevOps321 -b -m dnf -a "name=nginx state=started"
+
+
+--adhoc commands 
+--it is a command issued from ansible server targeting node manually, basically on some emergency/adhoc purpose
+
+PLAYBOOKS
+----------
+Playbook is a list of modules ansible server runs againt its node.
+YAML - YET ANOTHER MARKUP LANGUAGUE
+
+XML VS JSON VS YAML
+---------------------
+200 years back --> take a paper
+1.ac id
+2.date
+3.amt
+4.branch
+5.ac name
+- no particular formate
+
+after that solution is -- templates 
+form filling 
+field name --> field value
+key name --> key value
+
+DTO = DATA TRANSFER OBJECTS ( XML,JSON,YAML)
+XML - ENTENSIVE MARKUP LANGUAGUE
+<>
+	<>   </>
+</>
+
+JSON - JAVASCRIPT OBJEC NOTATION
+{
+	"FFF":"DSVS"
+	"CSC":"ASCSC"
+}
+YAML - YET ANOTHER MARKUP LANGUAGUE
+NAME:DSCDSC
+EMAIL:SACSDC
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ansible can connect to any system externally and can perform the tasks given.
+
+ansible- aws,azure,github,linux (mostly we will use for Linux servers)
+
+every ansible module syntax we can check in documentation
+module name is mandatory, you can supply args to module (optional or mandatory)
+
+play book -ping.yaml or .yml 
+
+ansible playbook - list of plays which contains modules that can do specific task
+
+
+
+variables
+---------------
+  vars: 
+    COURSE: "DEVOPS WITH AWS"
+
+{{}}
+
+play level 
+task level 
+
+try not to change any in source file .
+we can separate the varinble in another file abd refer taht in play book
+
+- declaring at play level
+- declaring at task level
+- separate file
+- prompt
+- from inventory
+- from args/command line
+variable preference
+1. always first preference is given to args / command line
+2. task level
+3. files
+4. prompt
+5. play level
+6. inventory
+7. role based
+
+INVENTORY file
+---------------
+ipadress -ungrouped
+grouping 
+[web]
+ipaddress
+[backend]
+ip address
+[mysql]
+ipaddress
+
+ungrouped
+grouped
+groupsof groups
+
+we can also do groups of groups 
+[servers:childern]
+[all:vars]
+ansible_user=ec2-user
+ansible_password
+for all hosts -we can use these variables
+
+----ansible -i inverntory.ini web --list-hosts
+
+datatypes
+-----------
+string --text
+int,float,double,decimal,long ---number
+boolean-true/false
+list 
+map
+
+
+ansible is devoloped using python ----
+hosts: web --target ip under web group 
+target nasible server as well =- local host
+hosts: local
+[list ]
+{map}
+
+conditions
+---------------
+if else -general key words
+
+
+when 
+- to decide whether a task or module should run or not
+
+expense
+ansible cant group
+
+we can create direct command 
+ansible.builtin.command
+
+
